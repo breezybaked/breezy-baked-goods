@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Breezy Baked Goods | Spring Hill, FL</title>
+  <title>Breezy's Baked Goods | Spring Hill, FL</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -141,6 +142,13 @@
       color: transparent;
     }
 
+    .hero-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-style: italic; font-weight: 700;
+      color: var(--pink-700); letter-spacing: 0.02em;
+      margin-bottom: 0.75rem; position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.18s ease both;
+    }
     .hero-sub {
       font-size: 1.15rem; color: var(--brown-light);
       max-width: 480px; line-height: 1.75;
@@ -417,6 +425,24 @@
 
     /* ── INSTAGRAM ── */
     #instagram { background: var(--cream); text-align: center; }
+    .social-links {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      margin: 0.75rem 0 2.5rem;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--white); border: 1.5px solid var(--pink-300);
+      color: var(--pink-700); font-weight: 700; font-size: 0.95rem;
+      padding: 0.65rem 1.35rem; border-radius: 999px; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--pink-600); color: var(--white); border-color: var(--pink-600); transform: translateY(-2px); }
+    .social-btn-fb { color: #1877f2; border-color: #b3cdf7; }
+    .social-btn-fb:hover { background: #1877f2; color: var(--white); border-color: #1877f2; }
+    .footer-socials { margin-top: 0.75rem; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .footer-socials a { color: var(--pink-300); text-decoration: none; }
+    .footer-socials a:hover { text-decoration: underline; }
+    .footer-socials span { opacity: 0.4; }
     .insta-handle {
       font-size: 1.5rem; font-weight: 700; color: var(--pink-600);
       margin: 0.75rem 0 2.5rem; display: inline-flex; align-items: center; gap: 0.5rem;
@@ -461,11 +487,193 @@
     footer a:hover { text-decoration: underline; }
     .footer-divider { width: 40px; height: 2px; background: var(--pink-600); margin: 1.25rem auto; }
 
+    /* ── MONTHLY NOTE ── */
+    .monthly-note {
+      display: inline-block; margin-top: 1.25rem;
+      background: var(--pink-100); border: 1.5px solid var(--pink-300);
+      color: var(--brown-mid); font-size: 0.88rem; line-height: 1.6;
+      padding: 0.75rem 1.25rem; border-radius: 12px;
+    }
+    .monthly-note a { color: var(--pink-600); font-weight: 700; text-decoration: none; }
+    .monthly-note a:hover { text-decoration: underline; }
+
+    /* ── BOXES ── */
+    #boxes { background: var(--white); }
+    .boxes-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 0.5rem;
+    }
+    .box-card {
+      background: var(--cream); border-radius: 24px; overflow: hidden;
+      border: 1.5px solid rgba(240,98,146,0.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .box-card:hover { transform: translateY(-10px); box-shadow: 0 20px 48px rgba(240,98,146,0.18); border-color: var(--pink-300); }
+    .box-card.box-featured {
+      background: var(--white); border: 2px solid var(--pink-600);
+      box-shadow: 0 8px 32px rgba(233,30,140,0.18);
+    }
+    .box-header {
+      height: 130px; display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; position: relative;
+    }
+    .classic-header { background: linear-gradient(135deg, #fff0e6, #ffd6c0); }
+    .premium-header { background: linear-gradient(135deg, #fde8f2, #ffd6e8); }
+    .lovers-header  { background: linear-gradient(135deg, #f5eeff, #e8d5ff); }
+    .party-header   { background: linear-gradient(135deg, #fff8e6, #ffd6a5); }
+    .box-emoji { font-size: 3.5rem; line-height: 1; }
+    .box-badge {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: rgba(255,255,255,0.75); color: var(--brown);
+      padding: 0.3rem 0.75rem; border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+    .box-body { padding: 1.5rem; }
+    .box-popular-tag {
+      display: inline-block; background: var(--pink-600); color: var(--white);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.28rem 0.8rem; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+    .box-body h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--brown); margin-bottom: 0.4rem; }
+    .box-desc { color: var(--brown-light); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1rem; }
+    .box-price {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900;
+      color: var(--pink-600); line-height: 1; margin-bottom: 1.25rem;
+    }
+    .btn-sm { padding: 0.6rem 1.3rem; font-size: 0.82rem; }
+
+    /* ── TRUST BADGES ── */
+    .trust-strip {
+      background: var(--white); padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(240,98,146,0.1);
+    }
+    .trust-grid {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--brown-mid);
+    }
+    .trust-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--pink-100); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    /* ── LEAD TIME BANNER ── */
+    .lead-banner {
+      background: linear-gradient(90deg, var(--pink-700), var(--pink-600));
+      color: var(--white); text-align: center;
+      padding: 0.7rem 2rem; font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .lead-banner strong { font-weight: 800; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--cream); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .gallery-item {
+      border-radius: 16px; overflow: hidden; aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    .gallery-item::after {
+      content: 'View on Instagram'; position: absolute; inset: 0;
+      background: rgba(233,30,140,0.82); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; opacity: 0; transition: opacity 0.25s;
+      border-radius: 16px;
+    }
+    .gallery-item:hover { transform: scale(1.04); }
+    .gallery-item:hover::after { opacity: 1; }
+    .gi-1 { background: linear-gradient(135deg,#fde8f2,#ffc0d8); }
+    .gi-2 { background: linear-gradient(135deg,#fff0e6,#ffd6c0); }
+    .gi-3 { background: linear-gradient(135deg,#fff8e6,#ffe0a0); }
+    .gi-4 { background: linear-gradient(135deg,#f0e8ff,#d8c0ff); }
+    .gi-5 { background: linear-gradient(135deg,#fde8f2,#ffc0d8); }
+    .gi-6 { background: linear-gradient(135deg,#e8f8f0,#b0e8d0); }
+    .gallery-note {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.88rem; color: var(--brown-light); font-style: italic;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #reviews { background: var(--white); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem; margin-top: 2.5rem;
+    }
+    .review-card {
+      background: var(--cream); border-radius: 20px; padding: 1.75rem;
+      border: 1.5px solid rgba(240,98,146,0.12);
+      transition: all 0.3s; cursor: default;
+    }
+    .review-card:hover { transform: translateY(-6px); border-color: var(--pink-300); box-shadow: 0 12px 36px rgba(240,98,146,0.12); }
+    .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .review-text { color: var(--brown-mid); font-size: 0.93rem; line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 0.75rem; }
+    .review-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--pink-100); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .review-name { font-weight: 700; font-size: 0.88rem; color: var(--brown); }
+    .review-via { font-size: 0.75rem; color: var(--brown-light); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--cream); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+    .faq-item {
+      background: var(--white); border-radius: 16px; padding: 1.5rem;
+      border: 1.5px solid rgba(240,98,146,0.1);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .faq-item:hover { border-color: var(--pink-300); box-shadow: 0 4px 20px rgba(240,98,146,0.1); }
+    .faq-q {
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      color: var(--brown); margin-bottom: 0.6rem; display: flex;
+      align-items: flex-start; gap: 0.6rem;
+    }
+    .faq-q::before { content: 'Q'; color: var(--pink-600); font-weight: 900; flex-shrink: 0; }
+    .faq-a { color: var(--brown-light); font-size: 0.88rem; line-height: 1.7; padding-left: 1.3rem; }
+
+    /* ── EMAIL SIGNUP ── */
+    .email-section {
+      background: linear-gradient(135deg, #fde8f2, #fff0e6);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .email-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.2rem); color: var(--brown); margin-bottom: 0.75rem; }
+    .email-section p { color: var(--brown-light); font-size: 1rem; margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .email-form { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+    .email-input {
+      flex: 1; min-width: 200px; padding: 0.85rem 1.25rem;
+      border: 1.5px solid var(--pink-300); border-radius: 999px;
+      font-size: 0.95rem; font-family: inherit; outline: none;
+      background: var(--white); color: var(--brown);
+      transition: border-color 0.2s;
+    }
+    .email-input:focus { border-color: var(--pink-600); }
+    .email-note { font-size: 0.78rem; color: var(--brown-light); margin-top: 0.75rem; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .menu-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .menu-grid, .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .boxes-grid, .faq-grid, .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .order-intro { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .boxes-grid, .faq-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 700px) {
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -479,6 +687,11 @@
 </head>
 <body>
 
+  <!-- LEAD TIME BANNER -->
+  <div class="lead-banner">
+    ⏰ <strong>Order at least 5 days in advance</strong> · Limited spots available each week · DM to check availability
+  </div>
+
   <!-- cursor sparkle -->
   <div class="sparkle" id="sparkle"></div>
 
@@ -488,8 +701,10 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#menu">Menu</a></li>
+      <li><a href="#boxes">Boxes</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#order">Order</a></li>
-      <li><a href="#instagram">Instagram</a></li>
       <li><a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="nav-cta">Order Now</a></li>
     </ul>
   </nav>
@@ -515,9 +730,10 @@
       Now taking orders · Spring Hill, FL
     </div>
     <h1>
-      <span class="outline">Breezy</span>
+      <span class="outline">Breezy's</span>
       <span class="script">Baked Goods</span>
     </h1>
+    <p class="hero-slogan">Support Small, Eat Sweet. 🍪</p>
     <p class="hero-sub">Fresh-baked cookies, cookie cakes, and sweet treats made from scratch by Bree McIntyre — available for local pickup or delivery.</p>
     <div class="hero-btns">
       <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary btn-arrow">Order on Instagram </a>
@@ -536,6 +752,7 @@
       <span class="marquee-item">✨ Made from Scratch <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">🍫 Seasonal Treats <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">💕 Baked with Love <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🛍️ Support Small, Eat Sweet <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">🍪 Cookie Cakes <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">🎉 Custom Designs <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">🏠 Home Bakery <span class="marquee-sep">✦</span></span>
@@ -544,6 +761,17 @@
       <span class="marquee-item">✨ Made from Scratch <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">🍫 Seasonal Treats <span class="marquee-sep">✦</span></span>
       <span class="marquee-item">💕 Baked with Love <span class="marquee-sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- TRUST BADGES -->
+  <div class="trust-strip">
+    <div class="trust-grid">
+      <div class="trust-item"><div class="trust-icon">🍪</div> Baked Fresh to Order</div>
+      <div class="trust-item"><div class="trust-icon">🌿</div> Real Ingredients Only</div>
+      <div class="trust-item"><div class="trust-icon">🎨</div> Fully Customizable</div>
+      <div class="trust-item"><div class="trust-icon">🚗</div> Pickup &amp; Local Delivery</div>
+      <div class="trust-item"><div class="trust-icon">💕</div> Support Small Business</div>
     </div>
   </div>
 
@@ -586,6 +814,9 @@
         <p class="section-eyebrow reveal" style="justify-content:center;">What We Bake</p>
         <h2 class="section-title reveal reveal-delay-1">Our <em>Sweet</em> Treats</h2>
         <p class="section-sub reveal reveal-delay-2">Everything made fresh to order. DM on Instagram to customize flavors, decorations, and quantities.</p>
+        <div class="monthly-note reveal reveal-delay-2">
+          🗓️ <strong>Menus rotate monthly</strong> — follow <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">@breezysbaked.goods</a> on Instagram to see this month's flavors.
+        </div>
       </div>
       <div class="menu-grid">
 
@@ -603,25 +834,209 @@
           <div class="menu-card-img peach-bg">🍪</div>
           <div class="menu-card-body">
             <span class="menu-tag tag-peach">Classic</span>
-            <h3>Cookies</h3>
-            <p>Thick, chewy, golden-edged cookies in a rotating lineup of flavors. Chocolate chip, sugar, snickerdoodle, and seasonal specials.</p>
-            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">Order a dozen <span>→</span></a>
+            <h3>Classic Cookies</h3>
+            <p>Thick, chewy, golden-edged cookies in a rotating monthly lineup. Your go-to favorites, baked fresh to order — mix and match flavors.</p>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">Order yours <span>→</span></a>
           </div>
         </div>
 
         <div class="menu-card reveal reveal-delay-2">
-          <div class="menu-card-img gold-bg">🌟</div>
+          <div class="menu-card-img gold-bg">✨</div>
           <div class="menu-card-body">
-            <span class="menu-tag tag-gold">Seasonal</span>
-            <h3>Special Treats</h3>
-            <p>Brownies, bars, and other rotating sweet creations. Follow on Instagram to see what's fresh and available this week.</p>
-            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">See what's fresh <span>→</span></a>
+            <span class="menu-tag tag-gold">Premium</span>
+            <h3>Premium Cookies</h3>
+            <p>Elevated flavors, elevated ingredients. Our premium rotating monthly selection features specialty cookies that take things up a notch.</p>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">See this month's <span>→</span></a>
           </div>
         </div>
 
       </div>
     </div>
   </section>
+
+  <!-- BOXES -->
+  <section id="boxes">
+    <div class="container">
+      <div class="menu-header">
+        <p class="section-eyebrow reveal" style="justify-content:center;">The Deals</p>
+        <h2 class="section-title reveal reveal-delay-1">Breezy <em>Boxes</em></h2>
+        <p class="section-sub reveal reveal-delay-2">Bundle up and save. Every box is packed fresh to order — mix, match, and make it yours.</p>
+      </div>
+      <div class="boxes-grid">
+
+        <div class="box-card reveal">
+          <div class="box-header classic-header">
+            <div class="box-emoji">🍪</div>
+            <div class="box-badge">Classic</div>
+          </div>
+          <div class="box-body">
+            <h3>Breezy Box — Classic</h3>
+            <p class="box-desc">6 classic cookies, mix &amp; match flavors</p>
+            <div class="box-price">$20</div>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-outline btn-sm">Order this box →</a>
+          </div>
+        </div>
+
+        <div class="box-card reveal reveal-delay-1 box-featured">
+          <div class="box-header premium-header">
+            <div class="box-emoji">✨</div>
+            <div class="box-badge">Premium</div>
+          </div>
+          <div class="box-body">
+            <div class="box-popular-tag">Most Popular</div>
+            <h3>Breezy Box — Premium</h3>
+            <p class="box-desc">6 premium cookies, mix &amp; match flavors</p>
+            <div class="box-price">$25</div>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary btn-sm">Order this box →</a>
+          </div>
+        </div>
+
+        <div class="box-card reveal reveal-delay-2">
+          <div class="box-header lovers-header">
+            <div class="box-emoji">💕</div>
+            <div class="box-badge">Variety</div>
+          </div>
+          <div class="box-body">
+            <h3>Cookie Lovers Box</h3>
+            <p class="box-desc">8 cookies, mixed variety</p>
+            <div class="box-price">$30</div>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-outline btn-sm">Order this box →</a>
+          </div>
+        </div>
+
+        <div class="box-card reveal reveal-delay-3">
+          <div class="box-header party-header">
+            <div class="box-emoji">🎉</div>
+            <div class="box-badge">Party</div>
+          </div>
+          <div class="box-body">
+            <h3>Party Box</h3>
+            <p class="box-desc">15 cookies, mix &amp; match flavors</p>
+            <div class="box-price">$40</div>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-outline btn-sm">Order this box →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <p class="section-eyebrow reveal">Our Work</p>
+      <h2 class="section-title reveal reveal-delay-1">Fresh from <em>the Kitchen</em></h2>
+      <p class="section-sub reveal reveal-delay-2">Every order is one of a kind. Follow on Instagram to see the latest creations — new flavors and designs drop every month.</p>
+      <div class="gallery-grid reveal reveal-delay-2">
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-1">🍪</a>
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-2">🎂</a>
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-3">🎉</a>
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-4">✨</a>
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-5">🍫</a>
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item gi-6">🌸</a>
+      </div>
+      <p class="gallery-note reveal reveal-delay-3">📸 Photos coming soon — follow <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" style="color:var(--pink-600);font-weight:700;text-decoration:none;">@breezysbaked.goods</a> for the latest.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <p class="section-eyebrow reveal">Happy Customers</p>
+      <h2 class="section-title reveal reveal-delay-1">What People <em>Are Saying</em></h2>
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Bree made the most incredible cookie cake for my daughter's birthday. The design was perfect and the cookies were gone in minutes. Everyone was asking where I got them!"</p>
+          <div class="review-author">
+            <div class="review-avatar">👩</div>
+            <div>
+              <div class="review-name">Ashley M.</div>
+              <div class="review-via">via Instagram</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Ordered the Cookie Lovers box for a work event and it was a huge hit. So fresh, so soft — nothing like store-bought. Will definitely be ordering again every month!"</p>
+          <div class="review-author">
+            <div class="review-avatar">👨</div>
+            <div>
+              <div class="review-name">Marcus T.</div>
+              <div class="review-via">via Facebook</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The premium cookies are on another level. Bree is so sweet and easy to work with. Delivery was right on time and the packaging was adorable. 10/10 recommend!"</p>
+          <div class="review-author">
+            <div class="review-avatar">👩</div>
+            <div>
+              <div class="review-name">Jenna R.</div>
+              <div class="review-via">via Instagram</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <p class="section-eyebrow reveal">Got Questions?</p>
+      <h2 class="section-title reveal reveal-delay-1">Frequently <em>Asked</em></h2>
+      <div class="faq-grid">
+
+        <div class="faq-item reveal">
+          <div class="faq-q">How far in advance do I need to order?</div>
+          <p class="faq-a">Please order at least 5 days in advance. For large orders or special events, 1–2 weeks ahead is recommended to guarantee your spot.</p>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <div class="faq-q">How do I place an order?</div>
+          <p class="faq-a">All orders are placed via Instagram or Facebook DM. Send a message to @breezysbaked.goods with your details and Bree will get back to you quickly.</p>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <div class="faq-q">Do you offer delivery?</div>
+          <p class="faq-a">Yes! Local delivery is available in the Spring Hill, FL area. Mention your address when you DM and we'll confirm if you're in the delivery zone.</p>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <div class="faq-q">Can I customize flavors and designs?</div>
+          <p class="faq-a">Absolutely. All boxes are mix &amp; match and cookie cakes can include custom messages and designs. Just let us know what you have in mind!</p>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">Do you accommodate allergies?</div>
+          <p class="faq-a">Please let us know about any allergies when you order. While we do our best to accommodate, all items are baked in the same kitchen.</p>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <div class="faq-q">How do the monthly menus work?</div>
+          <p class="faq-a">Classic and Premium cookie flavors rotate every month. Follow on Instagram or Facebook to see what's available — new flavors drop at the start of each month.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SIGNUP -->
+  <div class="email-section">
+    <h2 class="reveal">Never miss a new flavor. 🍪</h2>
+    <p class="reveal reveal-delay-1">Drop your email and be the first to know when monthly menus drop, new boxes launch, and limited specials go live.</p>
+    <form class="email-form reveal reveal-delay-2" onsubmit="handleEmail(event)">
+      <input class="email-input" type="email" placeholder="your@email.com" required />
+      <button type="submit" class="btn btn-primary">Notify Me →</button>
+    </form>
+    <p class="email-note reveal reveal-delay-3">No spam, ever. Just sweet updates from Bree's kitchen.</p>
+  </div>
 
   <!-- STATS -->
   <div class="stats-strip">
@@ -705,8 +1120,15 @@
     <div class="container">
       <p class="section-eyebrow reveal" style="justify-content:center;">Stay in the Loop</p>
       <h2 class="section-title reveal reveal-delay-1">Follow <em>Along</em></h2>
-      <div class="insta-handle reveal reveal-delay-2">
-        📸 <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">@breezysbaked.goods</a>
+      <div class="social-links reveal reveal-delay-2">
+        <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @breezysbaked.goods
+        </a>
+        <a href="https://www.facebook.com/breezysbakedgoods" target="_blank" class="social-btn social-btn-fb">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Breezy's Baked Goods
+        </a>
       </div>
       <div class="insta-grid reveal reveal-delay-2">
         <div class="insta-tile it-1">🍪</div>
@@ -726,10 +1148,14 @@
     <div class="footer-divider"></div>
     <p>
       Baked with love by Bree McIntyre · Spring Hill, Florida<br />
-      Pickup &amp; Local Delivery Available<br />
-      <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">@breezysbaked.goods</a>
+      Pickup &amp; Local Delivery Available
     </p>
-    <p style="margin-top: 1.25rem; font-size: 0.72rem; opacity: 0.4;">© 2026 Breezy Baked Goods. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">Instagram</a>
+      <span>·</span>
+      <a href="https://www.facebook.com/breezysbakedgoods" target="_blank">Facebook</a>
+    </div>
+    <p style="margin-top: 1.25rem; font-size: 0.72rem; opacity: 0.4;">© 2026 Breezy's Baked Goods. All rights reserved.</p>
   </footer>
 
   <script>
@@ -777,6 +1203,30 @@
       requestAnimationFrame(animSparkle);
     }
     animSparkle();
+
+    // Email signup handler
+    function handleEmail(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      btn.textContent = '🎉 You\'re in!';
+      btn.style.background = 'var(--brown)';
+      input.value = '';
+      input.placeholder = 'Thanks! We\'ll be in touch.';
+      input.disabled = true;
+      btn.disabled = true;
+    }
+  </script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>
