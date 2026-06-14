@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Breezy's Baked Goods | Spring Hill, FL</title>
+  <title>Breezy's Baked Goods | Fresh-Baked Cookies & Cookie Cakes — Spring Hill, FL</title>
+  <meta name="description" content="Breezy's Baked Goods — fresh-baked cookies, cookie cakes, and sweet treats made from scratch by Bree McIntyre in Spring Hill, FL. Local pickup & delivery. Order via Instagram DM." />
+  <meta name="keywords" content="cookies, cookie cakes, home bakery, Spring Hill FL, custom cookies, baked goods, local bakery" />
+  <link rel="canonical" href="https://breezysbakedgoods.com/" />
+  <!-- Open Graph (Facebook, iMessage, etc.) -->
+  <meta property="og:title" content="Breezy's Baked Goods | Spring Hill, FL" />
+  <meta property="og:description" content="Fresh-baked cookies, cookie cakes, and sweet treats made from scratch. Local pickup & delivery in Spring Hill, FL. Order via Instagram DM." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://breezysbakedgoods.com/" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Breezy's Baked Goods | Spring Hill, FL" />
+  <meta name="twitter:description" content="Fresh-baked cookies & cookie cakes made from scratch. Local pickup & delivery in Spring Hill, FL." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
@@ -677,12 +689,67 @@
     }
     @media (max-width: 700px) {
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .nav-links { display: none; }
       .hero-float-tags { display: none; }
       .about-img-stack { height: 280px; }
       .img-card-main { width: 240px; height: 280px; }
       .img-card-accent { width: 130px; height: 150px; }
+
+      /* Mobile nav */
+      .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 68px; left: 0; right: 0;
+        background: rgba(255,248,242,0.98);
+        backdrop-filter: blur(16px);
+        padding: 1rem 2rem 2rem;
+        gap: 0;
+        border-bottom: 1px solid rgba(240,98,146,0.12);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        transform: translateY(-110%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.35s ease, opacity 0.3s ease;
+        z-index: 199;
+      }
+      .nav-links.mobile-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nav-links li {
+        padding: 0.9rem 0;
+        border-bottom: 1px solid rgba(240,98,146,0.1);
+        list-style: none;
+      }
+      .nav-links li:last-child { border-bottom: none; padding-bottom: 0; }
+      .nav-links a { font-size: 1rem; }
+      .nav-cta { margin-top: 0.5rem; display: inline-flex; }
+      .nav-hamburger { display: flex; }
     }
+
+    /* Hamburger button — hidden on desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 201;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--brown);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   </style>
 </head>
 <body>
@@ -707,6 +774,9 @@
       <li><a href="#order">Order</a></li>
       <li><a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="nav-cta">Order Now</a></li>
     </ul>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -781,7 +851,7 @@
       <div class="about-img-stack reveal">
         <div class="img-card img-card-main">
           🎂
-          <p>Bree's photo here</p>
+          <p>Spring Hill, FL</p>
         </div>
         <div class="img-card img-card-accent">🍪</div>
         <div class="about-badge">🍪 Made<br/>from scratch</div>
@@ -1190,6 +1260,23 @@
       });
     }, { threshold: 0.5 });
     countEls.forEach(el => countObserver.observe(el));
+
+    // Mobile hamburger menu
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('mobile-open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', false);
+      });
+    });
 
     // Cursor sparkle
     const sparkle = document.getElementById('sparkle');
