@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breezy Baked Goods | Spring Hill, FL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-100: #fde8f2;
+      --pink-300: #f9b8d4;
+      --pink-500: #f06292;
+      --pink-600: #e91e8c;
+      --pink-700: #c2185b;
+      --rose: #ff4081;
+      --cream: #fff8f2;
+      --peach: #fff0e6;
+      --brown: #3d1a0e;
+      --brown-mid: #7a3b28;
+      --brown-light: #b06040;
+      --gold: #f5a623;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR SPARKLE ── */
+    .sparkle {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--pink-500);
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: transform 0.1s;
+      mix-blend-mode: multiply;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(255,248,242,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(240,98,146,0.12);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(240,98,146,0.15); }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--brown);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--pink-600); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--brown-mid);
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      position: relative; padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--pink-600);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--pink-600); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-cta {
+      background: var(--pink-600); color: var(--white) !important;
+      padding: 0.5rem 1.2rem; border-radius: 999px;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--pink-700) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #fff0f8 0%, var(--cream) 40%, #fff5ea 100%);
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
+      animation: blobFloat 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-blob-1 { width: 500px; height: 500px; background: #fbbdd1; top: -100px; right: -100px; animation-delay: 0s; }
+    .hero-blob-2 { width: 350px; height: 350px; background: #ffd6a5; bottom: -80px; left: -80px; animation-delay: -3s; }
+    .hero-blob-3 { width: 250px; height: 250px; background: #fbbdd1; bottom: 100px; right: 10%; animation-delay: -5s; }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(20px, -20px) scale(1.05); }
+      66% { transform: translate(-15px, 15px) scale(0.96); }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--white); border: 1.5px solid var(--pink-300);
+      color: var(--pink-700); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.45rem 1.1rem; border-radius: 999px;
+      margin-bottom: 2rem; position: relative; z-index: 1;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow .dot { width: 7px; height: 7px; background: var(--pink-500); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.6);opacity:0.5;} }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 1.0; color: var(--brown);
+      margin-bottom: 1.25rem; position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero h1 .script { color: var(--pink-600); font-style: italic; display: block; }
+    .hero h1 .outline {
+      -webkit-text-stroke: 3px var(--brown);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem; color: var(--brown-light);
+      max-width: 480px; line-height: 1.75;
+      margin: 0 auto 2.5rem; position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-float-tags {
+      position: absolute; z-index: 1; pointer-events: none;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+    .hero-float-tags.left { left: 5%; top: 40%; }
+    .hero-float-tags.right { right: 5%; top: 35%; }
+    .float-tag {
+      background: var(--white); border: 1.5px solid var(--pink-300);
+      border-radius: 16px; padding: 0.75rem 1.1rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--brown);
+      box-shadow: 0 4px 20px rgba(240,98,146,0.12);
+      margin-bottom: 0.75rem; white-space: nowrap;
+      animation: floatTag 5s ease-in-out infinite;
+    }
+    .float-tag:nth-child(2) { animation-delay: -2s; }
+    .float-tag:nth-child(3) { animation-delay: -4s; }
+    @keyframes floatTag { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      padding: 0.95rem 2.2rem; border-radius: 999px;
+      transition: all 0.2s; letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--pink-600); color: var(--white);
+      box-shadow: 0 6px 24px rgba(233,30,140,0.35);
+    }
+    .btn-primary:hover { background: var(--pink-700); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(233,30,140,0.4); }
+    .btn-outline {
+      background: transparent; border: 2px solid var(--brown);
+      color: var(--brown);
+    }
+    .btn-outline:hover { background: var(--brown); color: var(--white); transform: translateY(-3px); }
+    .btn-white { background: var(--white); color: var(--pink-700); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
+    .btn-arrow::after { content: '→'; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--pink-600); color: var(--white);
+      padding: 0.9rem 0; overflow: hidden;
+      display: flex; gap: 0;
+    }
+    .marquee-track {
+      display: flex; gap: 2rem;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+    .marquee-item {
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.75rem; padding-right: 2rem;
+    }
+    .marquee-sep { opacity: 0.5; font-size: 1rem; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--pink-600);
+      margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--pink-600); display: block; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--brown); line-height: 1.15; margin-bottom: 1rem;
+    }
+    .section-title em { color: var(--pink-600); font-style: italic; }
+    .section-sub { color: var(--brown-light); font-size: 1.05rem; line-height: 1.75; max-width: 560px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-img-stack { position: relative; height: 500px; }
+    .img-card {
+      position: absolute; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    }
+    .img-card-main {
+      width: 340px; height: 420px; top: 0; left: 0;
+      background: linear-gradient(160deg, #fde8f2, #ffd6c0);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+    .img-card-main p { font-size: 0.82rem; color: var(--brown-light); margin-top: 0.75rem; font-style: italic; }
+    .img-card-accent {
+      width: 180px; height: 200px; bottom: 0; right: 0;
+      background: linear-gradient(160deg, #ffd6c0, #ffe8b0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .about-badge {
+      position: absolute; top: 20px; right: -10px; z-index: 2;
+      background: var(--pink-600); color: var(--white);
+      border-radius: 16px; padding: 0.9rem 1.2rem;
+      font-weight: 700; font-size: 0.88rem; text-align: center;
+      box-shadow: 0 8px 24px rgba(233,30,140,0.3);
+      line-height: 1.4;
+    }
+    .about-content .section-sub { max-width: 100%; }
+    .about-quote {
+      border-left: 4px solid var(--pink-300);
+      padding: 1rem 1.5rem; margin: 1.5rem 0;
+      background: var(--pink-100); border-radius: 0 12px 12px 0;
+      font-style: italic; color: var(--brown-mid); font-size: 1rem; line-height: 1.7;
+    }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .pill {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--peach); color: var(--brown);
+      padding: 0.45rem 1rem; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 600;
+      border: 1px solid rgba(240,98,146,0.2);
+      transition: all 0.2s;
+    }
+    .pill:hover { background: var(--pink-100); border-color: var(--pink-500); transform: translateY(-2px); }
+
+    /* ── MENU ── */
+    #menu { background: var(--cream); }
+    .menu-header { text-align: center; margin-bottom: 4rem; }
+    .menu-header .section-sub { margin: 0 auto; }
+    .menu-header .section-eyebrow { justify-content: center; }
+    .menu-header .section-eyebrow::before { display: none; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .menu-card {
+      background: var(--white); border-radius: 24px; overflow: hidden;
+      border: 1.5px solid transparent;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: default; position: relative;
+    }
+    .menu-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 24px;
+      background: linear-gradient(160deg, rgba(240,98,146,0.06), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .menu-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--pink-300); box-shadow: 0 20px 50px rgba(240,98,146,0.18); }
+    .menu-card:hover::after { opacity: 1; }
+    .menu-card-img {
+      height: 200px; display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative; overflow: hidden;
+      transition: transform 0.4s;
+    }
+    .menu-card:hover .menu-card-img { transform: scale(1.05); }
+    .menu-card-img.pink-bg { background: linear-gradient(135deg, #fde8f2 0%, #ffd6e8 100%); }
+    .menu-card-img.peach-bg { background: linear-gradient(135deg, #fff0e6 0%, #ffd6c0 100%); }
+    .menu-card-img.gold-bg { background: linear-gradient(135deg, #fff8e6 0%, #ffd6a5 100%); }
+    .menu-card-body { padding: 1.75rem; }
+    .menu-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.28rem 0.8rem; border-radius: 999px; margin-bottom: 0.8rem;
+    }
+    .tag-pink { background: var(--pink-100); color: var(--pink-700); }
+    .tag-peach { background: #fff0e6; color: #b06040; }
+    .tag-gold { background: #fff8e6; color: #8a6400; }
+    .menu-card-body h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      color: var(--brown); margin-bottom: 0.6rem;
+    }
+    .menu-card-body p { color: var(--brown-light); font-size: 0.9rem; line-height: 1.65; }
+    .menu-card-cta {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      color: var(--pink-600); font-weight: 700; font-size: 0.85rem;
+      margin-top: 1rem; text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .menu-card-cta:hover { gap: 0.6rem; }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--brown); color: var(--white);
+      padding: 3.5rem 2rem;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .stat-num {
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+      color: var(--pink-300); line-height: 1; margin-bottom: 0.4rem;
+    }
+    .stat-label { font-size: 0.85rem; font-weight: 500; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── HOW TO ORDER ── */
+    #order { background: var(--white); }
+    .order-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+    .order-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+    .order-step {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.5rem; border-radius: 20px;
+      border: 1.5px solid transparent;
+      transition: all 0.3s; cursor: default;
+    }
+    .order-step:hover { background: var(--pink-100); border-color: var(--pink-300); transform: translateX(6px); }
+    .step-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--pink-600); color: var(--white);
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900;
+    }
+    .step-text h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--brown); margin-bottom: 0.35rem; }
+    .step-text p { color: var(--brown-light); font-size: 0.9rem; line-height: 1.65; }
+
+    .order-visual {
+      background: linear-gradient(160deg, #fde8f2, #fff0e6);
+      border-radius: 28px; padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      box-shadow: 0 12px 40px rgba(240,98,146,0.12);
+    }
+    .order-visual-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); margin-bottom: 0.5rem; }
+    .order-check {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.9rem; color: var(--brown-mid); font-weight: 500;
+    }
+    .check-icon {
+      width: 24px; height: 24px; border-radius: 50%; background: var(--pink-600);
+      color: var(--white); display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; flex-shrink: 0;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(140deg, var(--pink-600) 0%, #c2185b 50%, #880e4f 100%);
+      padding: 7rem 2rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); top: -200px; right: -150px;
+    }
+    .cta-section::after {
+      content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); bottom: -150px; left: -100px;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--white); margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 480px;
+      margin: 0 auto 2.5rem; line-height: 1.75; position: relative; z-index: 1;
+    }
+
+    /* ── INSTAGRAM ── */
+    #instagram { background: var(--cream); text-align: center; }
+    .insta-handle {
+      font-size: 1.5rem; font-weight: 700; color: var(--pink-600);
+      margin: 0.75rem 0 2.5rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .insta-handle a { color: inherit; text-decoration: none; }
+    .insta-handle a:hover { text-decoration: underline; }
+    .insta-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem; max-width: 560px; margin: 0 auto 2.5rem;
+    }
+    .insta-tile {
+      aspect-ratio: 1; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 2.8rem;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer; position: relative; overflow: hidden;
+    }
+    .insta-tile::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(233,30,140,0.2); opacity: 0; transition: opacity 0.2s;
+    }
+    .insta-tile:hover { transform: scale(1.1) rotate(-2deg); }
+    .insta-tile:hover::after { opacity: 1; }
+    .it-1 { background: linear-gradient(135deg, #fde8f2, #ffd6e8); }
+    .it-2 { background: linear-gradient(135deg, #fff0e6, #ffd6c0); }
+    .it-3 { background: linear-gradient(135deg, #fff8e6, #ffd6a5); }
+    .it-4 { background: linear-gradient(135deg, #f0e8ff, #d6c0ff); }
+    .it-5 { background: linear-gradient(135deg, #e8f8f0, #c0e8d6); }
+    .it-6 { background: linear-gradient(135deg, #fde8f2, #ffd6e8); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown); color: #c4a090;
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      color: var(--white); font-weight: 700; margin-bottom: 0.75rem;
+    }
+    .footer-logo span { color: var(--pink-300); font-style: italic; }
+    footer p { font-size: 0.85rem; line-height: 2; }
+    footer a { color: var(--pink-300); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-divider { width: 40px; height: 2px; background: var(--pink-600); margin: 1.25rem auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .menu-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .order-intro { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .hero-float-tags { display: none; }
+      .about-img-stack { height: 280px; }
+      .img-card-main { width: 240px; height: 280px; }
+      .img-card-accent { width: 130px; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- cursor sparkle -->
+  <div class="sparkle" id="sparkle"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">Breezy <span>Baked Goods</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="nav-cta">Order Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+
+    <div class="hero-float-tags left">
+      <div class="float-tag">🍪 Cookie Cakes</div>
+      <div class="float-tag">🎂 Custom Orders</div>
+      <div class="float-tag">🚗 Delivery Available</div>
+    </div>
+    <div class="hero-float-tags right">
+      <div class="float-tag">📍 Spring Hill, FL</div>
+      <div class="float-tag">✨ Made from Scratch</div>
+    </div>
+
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Now taking orders · Spring Hill, FL
+    </div>
+    <h1>
+      <span class="outline">Breezy</span>
+      <span class="script">Baked Goods</span>
+    </h1>
+    <p class="hero-sub">Fresh-baked cookies, cookie cakes, and sweet treats made from scratch by Bree McIntyre — available for local pickup or delivery.</p>
+    <div class="hero-btns">
+      <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary btn-arrow">Order on Instagram </a>
+      <a href="#menu" class="btn btn-outline">See the Menu</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">🍪 Cookie Cakes <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🎉 Custom Designs <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🏠 Home Bakery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">📍 Spring Hill FL <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🚗 Local Delivery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">✨ Made from Scratch <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🍫 Seasonal Treats <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">💕 Baked with Love <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🍪 Cookie Cakes <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🎉 Custom Designs <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🏠 Home Bakery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">📍 Spring Hill FL <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🚗 Local Delivery <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">✨ Made from Scratch <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">🍫 Seasonal Treats <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">💕 Baked with Love <span class="marquee-sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-img-stack reveal">
+        <div class="img-card img-card-main">
+          🎂
+          <p>Bree's photo here</p>
+        </div>
+        <div class="img-card img-card-accent">🍪</div>
+        <div class="about-badge">🍪 Made<br/>from scratch</div>
+      </div>
+      <div class="about-content">
+        <p class="section-eyebrow reveal">Meet the Baker</p>
+        <h2 class="section-title reveal reveal-delay-1">Hi, I'm <em>Bree McIntyre.</em></h2>
+        <p class="section-sub reveal reveal-delay-2">I'm a home baker based in Spring Hill, Florida, and I pour my heart into every single order. Whether you're celebrating a birthday, a special milestone, or just treating yourself — I've got something sweet waiting for you.</p>
+        <div class="about-quote reveal reveal-delay-2">
+          "Every item is baked fresh to order — no preservatives, no shortcuts. Just real ingredients and a whole lot of love."
+        </div>
+        <div class="about-pills reveal reveal-delay-3">
+          <span class="pill">🏠 Home Bakery</span>
+          <span class="pill">📍 Spring Hill, FL</span>
+          <span class="pill">🛍️ Local Pickup</span>
+          <span class="pill">🚗 Local Delivery</span>
+          <span class="pill">✨ Custom Orders</span>
+        </div>
+        <div style="margin-top: 2rem;" class="reveal reveal-delay-3">
+          <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary">See My Work on Instagram →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="container">
+      <div class="menu-header">
+        <p class="section-eyebrow reveal" style="justify-content:center;">What We Bake</p>
+        <h2 class="section-title reveal reveal-delay-1">Our <em>Sweet</em> Treats</h2>
+        <p class="section-sub reveal reveal-delay-2">Everything made fresh to order. DM on Instagram to customize flavors, decorations, and quantities.</p>
+      </div>
+      <div class="menu-grid">
+
+        <div class="menu-card reveal">
+          <div class="menu-card-img pink-bg">🎉</div>
+          <div class="menu-card-body">
+            <span class="menu-tag tag-pink">⭐ Fan Favorite</span>
+            <h3>Cookie Cakes</h3>
+            <p>Giant, soft-baked cookie cakes decorated for any occasion — birthdays, holidays, or just because. Custom messages and designs available.</p>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">Order one <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="menu-card reveal reveal-delay-1">
+          <div class="menu-card-img peach-bg">🍪</div>
+          <div class="menu-card-body">
+            <span class="menu-tag tag-peach">Classic</span>
+            <h3>Cookies</h3>
+            <p>Thick, chewy, golden-edged cookies in a rotating lineup of flavors. Chocolate chip, sugar, snickerdoodle, and seasonal specials.</p>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">Order a dozen <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="menu-card reveal reveal-delay-2">
+          <div class="menu-card-img gold-bg">🌟</div>
+          <div class="menu-card-body">
+            <span class="menu-tag tag-gold">Seasonal</span>
+            <h3>Special Treats</h3>
+            <p>Brownies, bars, and other rotating sweet creations. Follow on Instagram to see what's fresh and available this week.</p>
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="menu-card-cta">See what's fresh <span>→</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-num" data-count="100">0</div>
+        <div class="stat-label">% Made from Scratch</div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Flavor Combos</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Passionate Baker</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="stat-num">💕</div>
+        <div class="stat-label">In Every Order</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO ORDER -->
+  <section id="order">
+    <div class="container">
+      <div class="order-intro">
+        <div>
+          <p class="section-eyebrow reveal">How It Works</p>
+          <h2 class="section-title reveal reveal-delay-1">Ordering is <em>easy.</em></h2>
+          <p class="section-sub reveal reveal-delay-2">All orders are placed through Instagram. Local pickup or delivery in Spring Hill — no shipping, just fresh.</p>
+          <div style="margin-top: 2rem;" class="reveal reveal-delay-3">
+            <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary btn-arrow">DM to Order </a>
+          </div>
+        </div>
+        <div class="order-visual reveal reveal-delay-1">
+          <div class="order-visual-title">What to include in your DM 📱</div>
+          <div class="order-check"><div class="check-icon">✓</div> What treat you'd like</div>
+          <div class="order-check"><div class="check-icon">✓</div> Quantity or size</div>
+          <div class="order-check"><div class="check-icon">✓</div> Flavor preferences</div>
+          <div class="order-check"><div class="check-icon">✓</div> Custom message or design (if any)</div>
+          <div class="order-check"><div class="check-icon">✓</div> Preferred pickup or delivery date</div>
+          <div class="order-check"><div class="check-icon">✓</div> Your location (for delivery)</div>
+        </div>
+      </div>
+      <div class="order-steps">
+        <div class="order-step reveal">
+          <div class="step-icon">1</div>
+          <div class="step-text">
+            <h3>Browse the Feed</h3>
+            <p>Head to @breezysbaked.goods on Instagram to see current offerings, flavors, and recent creations for inspiration.</p>
+          </div>
+        </div>
+        <div class="order-step reveal reveal-delay-1">
+          <div class="step-icon">2</div>
+          <div class="step-text">
+            <h3>Send a DM</h3>
+            <p>Message Bree with the details of your order — what you want, how many, any custom details, and your date.</p>
+          </div>
+        </div>
+        <div class="order-step reveal reveal-delay-2">
+          <div class="step-icon">3</div>
+          <div class="step-text">
+            <h3>Pickup or Delivery</h3>
+            <p>Swing by for local pickup in Spring Hill or arrange delivery right to your door. Everything is baked fresh for your order.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2 class="reveal">Ready for something sweet?</h2>
+    <p class="reveal reveal-delay-1">DM Bree on Instagram to place your order. Custom orders, bulk orders, and special occasions always welcome.</p>
+    <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-white reveal reveal-delay-2">Message @breezysbaked.goods →</a>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="container">
+      <p class="section-eyebrow reveal" style="justify-content:center;">Stay in the Loop</p>
+      <h2 class="section-title reveal reveal-delay-1">Follow <em>Along</em></h2>
+      <div class="insta-handle reveal reveal-delay-2">
+        📸 <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">@breezysbaked.goods</a>
+      </div>
+      <div class="insta-grid reveal reveal-delay-2">
+        <div class="insta-tile it-1">🍪</div>
+        <div class="insta-tile it-2">🎂</div>
+        <div class="insta-tile it-3">🌸</div>
+        <div class="insta-tile it-4">🍫</div>
+        <div class="insta-tile it-5">🎉</div>
+        <div class="insta-tile it-6">✨</div>
+      </div>
+      <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="btn btn-primary reveal reveal-delay-3">Follow on Instagram →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Breezy <span>Baked Goods</span></div>
+    <div class="footer-divider"></div>
+    <p>
+      Baked with love by Bree McIntyre · Spring Hill, Florida<br />
+      Pickup &amp; Local Delivery Available<br />
+      <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank">@breezysbaked.goods</a>
+    </p>
+    <p style="margin-top: 1.25rem; font-size: 0.72rem; opacity: 0.4;">© 2026 Breezy Baked Goods. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Sticky nav shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Animated count-up
+    const countEls = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const step = target / 40;
+          const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = Math.round(current) + (el.dataset.suffix || '%');
+            if (current >= target) clearInterval(timer);
+          }, 30);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countObserver.observe(el));
+
+    // Cursor sparkle
+    const sparkle = document.getElementById('sparkle');
+    let mx = 0, my = 0, sx = 0, sy = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animSparkle() {
+      sx += (mx - sx) * 0.15;
+      sy += (my - sy) * 0.15;
+      sparkle.style.left = sx + 'px';
+      sparkle.style.top = sy + 'px';
+      requestAnimationFrame(animSparkle);
+    }
+    animSparkle();
+  </script>
+</body>
+</html>
