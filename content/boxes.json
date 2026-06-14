@@ -1,0 +1,18 @@
+{
+  "classic": {
+    "desc": "6 classic cookies, mix & match flavors",
+    "price": "$20"
+  },
+  "premium": {
+    "desc": "6 premium cookies, mix & match flavors",
+    "price": "$25"
+  },
+  "lovers": {
+    "desc": "8 cookies, mixed variety",
+    "price": "$30"
+  },
+  "party": {
+    "desc": "15 cookies, mix & match flavors",
+    "price": "$40"
+  }
+}

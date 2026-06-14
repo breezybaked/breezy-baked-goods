@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Content"
+    files:
+      - label: "General Info"
+        name: "general"
+        file: "content/general.json"
+        fields:
+          - { label: "Hero Subtitle", name: "hero_sub", widget: "string" }
+          - { label: "Lead Time Notice", name: "lead_time", widget: "string" }
+          - { label: "Monthly Menu Note", name: "monthly_note", widget: "string" }
+
+      - label: "About Bree"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - { label: "Bio Paragraph 1", name: "bio1", widget: "text" }
+          - { label: "Pull Quote", name: "quote", widget: "string" }
+
+      - label: "Classic Cookies"
+        name: "classic"
+        file: "content/classic.json"
+        fields:
+          - { label: "Description", name: "desc", widget: "text" }
+
+      - label: "Premium Cookies"
+        name: "premium"
+        file: "content/premium.json"
+        fields:
+          - { label: "Description", name: "desc", widget: "text" }
+
+      - label: "Breezy Boxes"
+        name: "boxes"
+        file: "content/boxes.json"
+        fields:
+          - label: "Breezy Box Classic"
+            name: "classic"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "desc", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+          - label: "Breezy Box Premium"
+            name: "premium"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "desc", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+          - label: "Cookie Lovers Box"
+            name: "lovers"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "desc", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+          - label: "Party Box"
+            name: "party"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "desc", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+
+      - label: "FAQ"
+        name: "faq"
+        file: "content/faq.json"
+        fields:
+          - label: "Questions"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Answer", name: "a", widget: "text" }
