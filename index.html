@@ -17,7 +17,6 @@
   <meta name="twitter:title" content="Breezy's Baked Goods | Spring Hill, FL" />
   <meta name="twitter:description" content="Fresh-baked cookies & cookie cakes made from scratch. Local pickup & delivery in Spring Hill, FL." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1006,7 +1005,7 @@
         <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item" style="background-image:url('images/IMG_1201.JPG');background-size:cover;background-position:center;"></a>
         <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" class="gallery-item" style="background-image:url('images/IMG_9077.jpeg');background-size:cover;background-position:center;"></a>
       </div>
-      <p class="gallery-note reveal reveal-delay-3">📸 Photos coming soon — follow <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" style="color:var(--pink-600);font-weight:700;text-decoration:none;">@breezysbaked.goods</a> for the latest.</p>
+      <p class="gallery-note reveal reveal-delay-3">📸 Follow <a href="https://www.instagram.com/breezysbaked.goods/" target="_blank" style="color:var(--pink-600);font-weight:700;text-decoration:none;">@breezysbaked.goods</a> for even more.</p>
     </div>
   </section>
 
@@ -1299,30 +1298,6 @@
       requestAnimationFrame(animSparkle);
     }
     animSparkle();
-
-    // Email signup handler
-    function handleEmail(e) {
-      e.preventDefault();
-      const input = e.target.querySelector('input');
-      const btn = e.target.querySelector('button');
-      btn.textContent = '🎉 You\'re in!';
-      btn.style.background = 'var(--brown)';
-      input.value = '';
-      input.placeholder = 'Thanks! We\'ll be in touch.';
-      input.disabled = true;
-      btn.disabled = true;
-    }
-  </script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
   </script>
 </body>
 </html>
